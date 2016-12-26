@@ -1,0 +1,25 @@
+# Logs
+logs
+*.log
+
+#Eclipse settings
+/.settings
+/.project
+.classpath
+
+# Runtime data
+pids
+*.pid
+*.seed
+
+# sbteclipse plugin
+target
+
+# node-waf configuration
+.lock-wscript
+
+# Compiled binary addons (http://nodejs.org/api/addons.html)
+build/Release
+
+# Mac folder files
+.DS_Store
