@@ -3,22 +3,35 @@ package com.usher.model;
 public class User {
 
 	private long id;
-	
+
 	private String username;
-	
+
 	private String address;
-	
+
 	private String email;
-	
-	public User(){
-		id=0;
+
+	private String password;
+
+	private String level;
+
+	private String location;
+
+	private boolean recent;
+
+	public User() {
+		id = 0;
 	}
-	
-	public User(long id, String username, String address, String email){
+
+	public User(long id, String username, String address, String email, String password, String level, String location,
+			boolean recent) {
 		this.id = id;
 		this.username = username;
 		this.address = address;
 		this.email = email;
+		this.password = password;
+		this.level = level;
+		this.location = location;
+		this.recent = recent;
 	}
 
 	public long getId() {
@@ -53,6 +66,38 @@ public class User {
 		this.email = email;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getLevel() {
+		return level;
+	}
+
+	public void setLevel(String level) {
+		this.level = level;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public boolean isRecent() {
+		return recent;
+	}
+
+	public void setRecent(boolean recent) {
+		this.recent = recent;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -77,10 +122,8 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", address=" + address
-				+ ", email=" + email + "]";
+		return "User [id=" + id + ", username=" + username + ", address=" + address + ", email=" + email + ", password="
+				+ password + ", level=" + level + ", location=" + location + ", recent=" + recent + "]";
 	}
-	
 
-	
 }

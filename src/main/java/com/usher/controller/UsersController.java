@@ -20,8 +20,8 @@ import com.usher.model.User;
 import com.usher.service.UserService;
  
 @RestController
-public class HelloWorldRestController {
-	public static final Logger logger = LogManager.getLogger(HelloWorldRestController.class);
+public class UsersController {
+	public static final Logger logger = LogManager.getLogger(UsersController.class);
  
     @Autowired
     UserService userService;  //Service which will do all data retrieval/manipulation work
@@ -58,7 +58,7 @@ public class HelloWorldRestController {
     //-------------------Create a User--------------------------------------------------------
      
     @RequestMapping(value = "/user/", method = RequestMethod.POST)
-    public ResponseEntity<Void> createUser(@RequestBody User user,    UriComponentsBuilder ucBuilder) {
+    public ResponseEntity<Void> createUser(@RequestBody User user, UriComponentsBuilder ucBuilder) {
         logger.info("Creating User " + user.getUsername());
  
         if (userService.isUserExist(user)) {
