@@ -12,5 +12,10 @@ public class IndexController {
 	    public String getIndexPage() {
 	        return "UserManagement";
 	    }
+	  
+	  @RequestMapping(value = "/login", method = RequestMethod.GET)
+	    public String getHomePage() {
+	        return "login";
+	    }
 
 }
