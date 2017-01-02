@@ -8,7 +8,9 @@ import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.stereotype.Service;
 
 import com.usher.model.User;
+import com.usher.model.UserContentCoverter;
 import com.usher.utils.AppUtils;
+import com.usher.utils.FileUtils;
 
 @Service("userService")
 public class UserServiceImpl implements UserService {
@@ -73,19 +75,7 @@ public class UserServiceImpl implements UserService {
 
 	private static List<User> populateDummyUsers() {
 		List<User> users = new ArrayList<User>();
-
-		// User (long id, String username, String address, String email,
-		// String password, String level, String location, boolean recent)
-
-		users.add(new User(counter.incrementAndGet(), "Sumit Dang", "Washington DC", "sumit.acse@gmail.com",
-				AppUtils.generateOTP(), "L0", AppUtils.generateLocationKey(), true));
-		users.add(new User(counter.incrementAndGet(), "Nitin Goel", "Gurgaon, India", "nitingoel16aug@gmail.com",
-				AppUtils.generateLocationKey(), "L0", AppUtils.generateLocationKey(), true));
-		users.add(new User(counter.incrementAndGet(), "Shivani", "New Delhi", "shivani@gmail.com",
-				AppUtils.generateOTP(), "L1", AppUtils.generateLocationKey(), true));
-		users.add(new User(counter.incrementAndGet(), "Akash", "Pune, India", "mail2akashdang@gmail.com",
-				AppUtils.generateLocationKey(), "L2", AppUtils.generateLocationKey(), true));
-		return users;
+		return FileUtils.getUsers(FileUtils.readFile("login"));
 	}
 
 }

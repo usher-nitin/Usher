@@ -18,6 +18,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.usher.model.User;
 import com.usher.service.UserService;
+import com.usher.utils.AppUtils;
  
 @RestController
 public class UsersController {
@@ -65,6 +66,8 @@ public class UsersController {
             logger.info("A User with name " + user.getUsername() + " already exist");
             return new ResponseEntity<Void>(HttpStatus.CONFLICT);
         }
+        user.setPassword(AppUtils.generateOTP());
+        user.setRecent(true);
  
         userService.saveUser(user);
  

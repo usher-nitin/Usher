@@ -5,9 +5,11 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Properties;
@@ -15,31 +17,33 @@ import java.util.Properties;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.usher.model.User;
+import com.usher.model.UserContentCoverter;
+
 public final class FileUtils {
 	public static final Logger logger = LogManager.getLogger(FileUtils.class);
 
-	public static Properties readFile(String filename) {
-		return readFile(filename, false);
+	public static Properties loadAppConfig() {
+		Properties prop = new Properties();
+		try {
+			prop.load(FileUtils.class.getClassLoader().getResourceAsStream("application.properties"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return prop;
 	}
 
-	public static Properties readFile(String filename, boolean printAll) {
+	public static Properties readFile(String filename) {
 
 		Properties prop = new Properties();
 		InputStream input = null;
-		filename = Constants.BASE_FILE_PATH + filename;
+		filename = getFileName(filename);
+
 		logger.info("Reading file :: " + filename);
 
 		try {
 			input = new FileInputStream(filename);
 			prop.load(input);
-			if (printAll) {
-				Enumeration<?> e = prop.propertyNames();
-				while (e.hasMoreElements()) {
-					String key = (String) e.nextElement();
-					String value = prop.getProperty(key);
-					logger.info("Key : " + key + ", Value : " + value);
-				}
-			}
 
 		} catch (IOException e1) {
 			logger.error(e1.getMessage(), e1);
@@ -55,11 +59,44 @@ public final class FileUtils {
 		return prop;
 	}
 
+	public static void printAll(Properties prop) {
+		Enumeration<?> e = prop.propertyNames();
+		while (e.hasMoreElements()) {
+			String key = (String) e.nextElement();
+			String value = prop.getProperty(key);
+			logger.info("Key : " + key + ", Value : " + value);
+		}
+	}
+
+	public static List<User> getUsers(Properties prop) {
+		List<User> users = new ArrayList<User>();
+		Enumeration<?> e = prop.propertyNames();
+		while (e.hasMoreElements()) {
+			String key = (String) e.nextElement();
+			String value = prop.getProperty(key);
+			logger.info("Key : " + key + ", Value : " + value);
+
+			users.add((User) UserContentCoverter.convertToEntityAttribute(value));
+
+		}
+		return users;
+	}
+
+	public static String getFileName(String filename) {
+		Properties appProp = loadAppConfig();
+		filename = appProp.getProperty("data.folder.path") + filename + Constants.PROPERTIES_FILE_EXTENSION;
+		return filename;
+	}
+
 	public static void appendToFile(String filename, HashMap<String, String> hmap) {
+		appendToFile(filename, hmap, false);
+	}
+
+	public static void appendToFile(String filename, HashMap<String, String> hmap, boolean applicationProperties) {
 
 		FileOutputStream fileOut = null;
 		FileInputStream fileIn = null;
-		filename = Constants.BASE_FILE_PATH + filename;
+		filename = getFileName(filename);
 		logger.info("Writing to file :: " + filename);
 
 		try {
