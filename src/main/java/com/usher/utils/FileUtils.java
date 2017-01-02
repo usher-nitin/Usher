@@ -8,7 +8,6 @@ import java.io.InputStream;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Properties;
 
@@ -88,7 +87,7 @@ public final class FileUtils {
 			prop.load(fileIn);
 			Iterator<Entry<String, String>> it = hmap.entrySet().iterator();
 			while (it.hasNext()) {
-				Map.Entry pair = (Map.Entry) it.next();
+				Entry<String, String> pair = it.next();
 				prop.setProperty((String) pair.getKey(), (String) pair.getValue());
 				it.remove(); // avoids a ConcurrentModificationException
 			}
@@ -161,7 +160,7 @@ public final class FileUtils {
 			prop.load(fileIn);
 			Iterator<Entry<String, String>> it = hmap.entrySet().iterator();
 			while (it.hasNext()) {
-				Map.Entry pair = (Map.Entry) it.next();
+				Entry<String, String> pair = it.next();
 				prop.replace((String) pair.getKey(), (String) pair.getValue());
 				it.remove(); // avoids a ConcurrentModificationException
 			}

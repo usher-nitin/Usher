@@ -1,11 +1,11 @@
 package com.usher.model;
 
-public class User implements Comparable {
+public class User implements Comparable<User> {
 
 	private long id;
 
 	private String username;
-
+	
 	private String address;
 
 	private String email;
@@ -99,13 +99,13 @@ public class User implements Comparable {
 	}
 
 	@Override
-	public int compareTo(Object comparestu) {
-		int compareage = (int) ((User) comparestu).getId();
+	public int compareTo(User compareUser) {
+		int compareId = (int) compareUser.getId();
 		/* For Ascending order */
-		return (int) (this.id - compareage);
+		return (int) (this.id - compareId);
 
 		/* For Descending order do like this */
-		// return compareage-this.id;
+		// return compareId-this.id;
 	}
 
 	@Override

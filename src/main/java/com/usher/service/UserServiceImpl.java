@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.usher.model.User;
 import com.usher.model.UserContentCoverter;
-import com.usher.utils.AppUtils;
 import com.usher.utils.FileUtils;
 import com.usher.utils.UserUtils;
 
@@ -86,7 +85,6 @@ public class UserServiceImpl implements UserService {
 		List<User> users = UserUtils.getUsers(FileUtils.readFile("login"));
 		Collections.sort(users);
 		counter.set(UserUtils.getMaxUserId(users));
-		System.out.println("COUNTER :: " + counter);
 		return users;
 	}
 
