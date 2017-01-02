@@ -1,6 +1,7 @@
 package com.usher.service;
 
-import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
@@ -11,6 +12,7 @@ import com.usher.model.User;
 import com.usher.model.UserContentCoverter;
 import com.usher.utils.AppUtils;
 import com.usher.utils.FileUtils;
+import com.usher.utils.UserUtils;
 
 @Service("userService")
 public class UserServiceImpl implements UserService {
@@ -48,11 +50,17 @@ public class UserServiceImpl implements UserService {
 	public void saveUser(User user) {
 		user.setId(counter.incrementAndGet());
 		users.add(user);
+		HashMap<String, String> hmap = new HashMap<>();
+		hmap.put(counter.toString(), UserContentCoverter.convertToDatabaseColumn(user));
+		FileUtils.appendToFile("login", hmap);
 	}
 
 	public void updateUser(User user) {
 		int index = users.indexOf(user);
 		users.set(index, user);
+		HashMap<String, String> hmap = new HashMap<>();
+		hmap.put(String.valueOf(user.getId()), UserContentCoverter.convertToDatabaseColumn(user));
+		FileUtils.updateInFile("login", hmap);
 	}
 
 	public void deleteUserById(long id) {
@@ -61,6 +69,7 @@ public class UserServiceImpl implements UserService {
 			User user = iterator.next();
 			if (user.getId() == id) {
 				iterator.remove();
+				FileUtils.deleteFromFile("login", String.valueOf(user.getId()));
 			}
 		}
 	}
@@ -74,8 +83,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	private static List<User> populateDummyUsers() {
-		List<User> users = new ArrayList<User>();
-		return FileUtils.getUsers(FileUtils.readFile("login"));
+		List<User> users = UserUtils.getUsers(FileUtils.readFile("login"));
+		Collections.sort(users);
+		counter.set(UserUtils.getMaxUserId(users));
+		System.out.println("COUNTER :: " + counter);
+		return users;
 	}
 
 }

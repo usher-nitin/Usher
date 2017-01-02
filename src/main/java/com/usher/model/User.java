@@ -1,6 +1,6 @@
 package com.usher.model;
 
-public class User {
+public class User implements Comparable {
 
 	private long id;
 
@@ -96,6 +96,16 @@ public class User {
 
 	public void setRecent(boolean recent) {
 		this.recent = recent;
+	}
+
+	@Override
+	public int compareTo(Object comparestu) {
+		int compareage = (int) ((User) comparestu).getId();
+		/* For Ascending order */
+		return (int) (this.id - compareage);
+
+		/* For Descending order do like this */
+		// return compareage-this.id;
 	}
 
 	@Override
