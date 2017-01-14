@@ -4,7 +4,6 @@ angular.module('myApp').controller('UserController', ['$scope', 'UserService', f
     var self = this;
     self.user={id:null,username:'',address:'',email:''};
     self.users=[];
-
     self.submit = submit;
     self.edit = edit;
     self.remove = remove;

@@ -7,6 +7,10 @@ body, .form-control{
 	font-size:12px!important;
 }
 
+.login-control{
+	width:150%;
+}
+
 .floatRight{
 	float:right;
 	margin-right: 18px;
@@ -21,13 +25,35 @@ body, .form-control{
 	padding: 20px;
 }
 
+.logincontainer{
+	background-color: #DAE8E8;
+	padding: 20px;
+	margin-top:200px;
+}
+
 .tablecontainer{
 	padding-left: 20px;
 }
 
 .generic-container {
+  float:left;
   width:70%;
+  height:570px;
   margin-left: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #EAE7E7;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 0 30px black;
+}
+
+.login-container{
+  width:26%;
+  height:570px;
+  float:right;
+  margin-right: 18px;
   margin-top: 20px;
   margin-bottom: 20px;
   padding: 20px;

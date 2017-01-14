@@ -23,7 +23,6 @@
       .email.ng-dirty.ng-invalid-email {
           background-color: yellow;
       }
-
     </style>
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
      <link href="<c:url value='/static/css/app.css' />" rel="stylesheet"></link>
@@ -63,10 +62,10 @@
                           <div class="form-group col-md-12">
                               <label class="col-md-2 control-lable" for="file">Email</label>
                               <div class="col-md-7">
-                                  <input type="email" ng-model="ctrl.user.email" name="email" class="email form-control input-sm" placeholder="Enter your Email" required/>
+                                  <input type='email' ng-pattern='/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/' name='email' id='email' ng-model='ctrl.user.email' class="email form-control input-sm" placeholder="Enter your Email" required />
                                   <div class="has-error" ng-show="myForm.$dirty">
                                       <span ng-show="myForm.email.$error.required">This is a required field</span>
-                                      <span ng-show="myForm.email.$invalid">This field is invalid </span>
+                                      <span ng-show="myForm.email.$error.pattern">This field is invalid </span>
                                   </div>
                               </div>
                           </div>
@@ -111,8 +110,46 @@
                   </table>
               </div>
           </div>
-      </div>
-      
+</div>      
+      <div class="login-container">
+<div class="panel panel-default">
+              <div class="panel-heading"><span class="lead">Login</span></div>
+              <div class="formcontainer">
+              <form name="myForm" class="form-horizontal">
+                      
+                      <div class="row">
+                          <div class="form-group col-md-12">
+                              <label class="col-md-4 control-lable" for="file">Email</label>
+                              <div class="col-md-7">
+                                  <input type="email" name="email" class="email form-control input-sm" placeholder="Enter your Email" required/>
+                                  <div class="has-error" ng-show="myForm.$dirty">
+                                      <span ng-show="myForm.email.$error.required">This is a required field</span>
+                                      <span ng-show="myForm.email.$invalid">This email is invalid </span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                        
+                      
+                      <div class="row">
+                          <div class="form-group col-md-12">
+                              <label class="col-md-4 control-lable" for="file">Password</label>
+                              <div class="col-md-7">
+                                  <input type="password" class="input-sm" placeholder="Enter your Password"/>
+                              </div>
+                          </div>
+                      </div>
+                       <div class="row">
+                          <div class="form-actions floatRight">
+                              <input type="submit"  value="Login" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
+                              <button type="button" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">Sign Up</button>
+                          </div>
+                      </div>
+                      </form>
+              </div>
+              </div>
+</div>
+
       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
       <script src="<c:url value='/static/js/app.js' />"></script>
       <script src="<c:url value='/static/js/service/user_service.js' />"></script>
