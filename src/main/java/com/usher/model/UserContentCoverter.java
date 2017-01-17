@@ -17,9 +17,9 @@ public class UserContentCoverter {
 	}
 
 	@NotNull
-	public static User convertToEntityAttribute(String alertJSONStr) {
+	public static User convertToEntityAttribute(String userJSONStr) {
         try {
-            return objectMapper.readValue(alertJSONStr, User.class);
+            return objectMapper.readValue(userJSONStr, User.class);
         } catch (Exception ex) {
             return null;
         }

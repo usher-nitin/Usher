@@ -64,7 +64,13 @@ public final class FileUtils {
 
 	public static String getFileName(String filename) {
 		Properties appProp = loadAppConfig();
-		filename = appProp.getProperty("data.folder.path") + filename + Constants.PROPERTIES_FILE_EXTENSION;
+		String OS = System.getProperty("os.name").toLowerCase();
+		if (OS.indexOf("mac") >= 0) {
+			OS = ".mac";
+		} else {
+			OS = "";
+		}
+		filename = appProp.getProperty("data.folder.path"+OS) + filename + Constants.PROPERTIES_FILE_EXTENSION;
 		return filename;
 	}
 

@@ -32,13 +32,12 @@ body, .form-control{
 }
 
 .tablecontainer{
-	padding-left: 20px;
+	padding:3px;
 }
 
 .generic-container {
   float:left;
   width:70%;
-  height:570px;
   margin-left: 20px;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -51,7 +50,6 @@ body, .form-control{
 
 .login-container{
   width:26%;
-  height:570px;
   float:right;
   margin-right: 18px;
   margin-top: 20px;

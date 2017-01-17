@@ -34,6 +34,13 @@ public class User implements Comparable<User> {
 		this.recent = recent;
 	}
 
+	public User(long id, String username, String address, String email) {
+		this.id = id;
+		this.username = username;
+		this.address = address;
+		this.email = email;
+	}
+	
 	public long getId() {
 		return id;
 	}
