@@ -8,13 +8,27 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/")
 public class IndexController {
 
-	  @RequestMapping(method = RequestMethod.GET)
-	    public String getIndexPage() {
+	@RequestMapping(method = RequestMethod.GET)
+    public String getIndexPage() {
+        return "Main";
+    }
+  
+  @RequestMapping(value = "/home", method = RequestMethod.GET)
+    public String getHomePage() {
+        return "Home";
+    }
+  
+  @RequestMapping(value = "/location", method = RequestMethod.GET)
+    public String getLocationPage() {
+        return "Location";
+    }
+	  @RequestMapping(value = "/usermanagement", method = RequestMethod.GET)
+	    public String getUserManagementPage() {
 	        return "UserManagement";
 	    }
 	  
 	  @RequestMapping(value = "/login", method = RequestMethod.GET)
-	    public String getHomePage() {
+	    public String getLoginPage() {
 	        return "login";
 	    }
 
