@@ -1,4 +1,4 @@
-      <form ng-controller="homeController" name="myForm" ng-submit="askQuestion()" class="form-horizontal">
+      <form ng-controller="homeController" name="myForm" class="form-horizontal">
                       <div class="row">
                           <div class="form-group col-md-12">
                               <div class="col-md-7">
@@ -13,7 +13,7 @@
                       <div class="row">
                           <div class="form-actions floatRight">
                               <input type="submit" value="Submit" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
-                              <button type="button" ng-click="resetQuestion()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">Reset Question</button>
+                              <button type="button" ng-click="changeLocation()" class="btn btn-warning btn-sm">Change Location</button>
                           </div>
                       </div>
                       </form>

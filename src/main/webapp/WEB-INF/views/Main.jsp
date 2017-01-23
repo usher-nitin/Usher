@@ -34,9 +34,11 @@
     <div class="navbar-header">
       <a class="navbar-brand" href="#">Usher!! - your path finder</a>
     </div>
+     <form name="myForm">
     <ul class="nav navbar-nav" style="float:right;">
       <li class="active"><a href="#">About us</a></li>
       <li class="active"><a href="#">Contact us</a></li>
+     
       <li>
       <h6 style="margin-top: 2px;margin-bottom: 2px;color: #fff;">
 						Sign in to My Account
@@ -51,8 +53,9 @@
       <h6 style="margin-top: 2px;margin-bottom: 2px;color: #fff;"></h6>
       <input type="password" style="padding: 5px 10px;margin-top: 15px;" placeholder="Enter your Password"/></li>
       <li><button class="btn-primary" style="margin-top: 16px;padding: 5px 15px;">Login</button></li>
+      
     </ul>
-    
+    </form> 
   </div>
 </nav>
       <div class="generic-container" >

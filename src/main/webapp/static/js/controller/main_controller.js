@@ -30,10 +30,8 @@ app.config(function($stateProvider, $urlMatcherFactoryProvider, $urlRouterProvid
 
 
 .controller('mainController', function($scope, $rootScope, $state, $location){
-		//alert("ReadCookie");
 		$rootScope.rootValue="Main";
-		$scope.IsCookieFound = $.cookie("CookieValue");
-		//alert($scope.IsCookieFound);
+		$scope.IsCookieFound = $.cookie("UsherLocationKey");
 		if($scope.IsCookieFound!==undefined)
 		{
 			$state.go('home');
@@ -50,9 +48,7 @@ app.config(function($stateProvider, $urlMatcherFactoryProvider, $urlRouterProvid
 		}
 	
     $scope.WriteCookie = function(){
-		//alert("WriteCookie");
-		$.cookie("CookieValue",$scope.Location);
-		//alert($.cookie("CookieValue"));
+		$.cookie("UsherLocationKey",$scope.Location);
         $state.go('home');
     };
 })
@@ -63,11 +59,9 @@ app.config(function($stateProvider, $urlMatcherFactoryProvider, $urlRouterProvid
 		$state.go('main');
 		}
 	else{
-    $scope.askQuestion = function(){
-		alert("Home Controller ask Ques");
-		//$.cookie("CookieValue",$scope.cookieValue);
-		//alert($.cookie("CookieValue"));
-        //$state.go('home');
+    $scope.changeLocation = function(){
+		$.removeCookie('UsherLocationKey', { path: '/Usher' });
+		$state.go('location');
     };
 	}
 });
