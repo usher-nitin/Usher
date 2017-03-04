@@ -1,10 +1,13 @@
 package com.usher.utils;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -32,7 +35,7 @@ public final class FileUtils {
 		Properties prop = new Properties();
 		InputStream input = null;
 		filename = getFileName(filename);
-		
+
 		logger.info("Reading file :: " + filename);
 
 		try {
@@ -53,6 +56,19 @@ public final class FileUtils {
 		return prop;
 	}
 
+	public static String getValue(String filename, String key) {
+		Properties prop = readFile(filename);
+		Enumeration<?> e = prop.propertyNames();
+		while (e.hasMoreElements()) {
+			String fileKey = (String) e.nextElement();
+			if (key.equals(fileKey)) {
+				logger.info("Key : " + key + ", Value : " + prop.getProperty(key));
+				return prop.getProperty(key);
+			}
+		}
+		return "";
+	}
+
 	public static void printAll(Properties prop) {
 		Enumeration<?> e = prop.propertyNames();
 		while (e.hasMoreElements()) {
@@ -70,8 +86,19 @@ public final class FileUtils {
 		} else {
 			OS = "";
 		}
-		filename = appProp.getProperty("data.folder.path"+OS) + filename + Constants.PROPERTIES_FILE_EXTENSION;
+		filename = appProp.getProperty("data.folder.path" + OS) + filename + Constants.PROPERTIES_FILE_EXTENSION;
 		return filename;
+	}
+
+	public static void appendToFile(String filename, String query) {
+
+		try (FileWriter fw = new FileWriter(getFileName(filename), true);
+				BufferedWriter bw = new BufferedWriter(fw);
+				PrintWriter out = new PrintWriter(bw)) {
+			out.println(query);
+		} catch (IOException e) {
+		}
+
 	}
 
 	public static void appendToFile(String filename, HashMap<String, String> hmap) {
@@ -112,7 +139,7 @@ public final class FileUtils {
 			}
 		}
 	}
-	
+
 	public static void deleteFromFile(String filename, String key) {
 
 		FileOutputStream fileOut = null;
@@ -146,7 +173,7 @@ public final class FileUtils {
 			}
 		}
 	}
-	
+
 	public static void updateInFile(String filename, HashMap<String, String> hmap) {
 
 		FileOutputStream fileOut = null;

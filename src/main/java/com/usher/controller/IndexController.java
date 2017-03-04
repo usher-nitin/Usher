@@ -22,14 +22,15 @@ public class IndexController {
     public String getLocationPage() {
         return "Location";
     }
-	  @RequestMapping(value = "/usermanagement", method = RequestMethod.GET)
-	    public String getUserManagementPage() {
-	        return "UserManagement";
-	    }
-	  
-	  @RequestMapping(value = "/login", method = RequestMethod.GET)
-	    public String getLoginPage() {
-	        return "login";
-	    }
+  
+  @RequestMapping(value = "/usermanagement", method = RequestMethod.GET)
+    public String getUserManagementPage() {
+        return "UserManagement";
+    }
+  
+  @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String getLoginPage() {
+        return "login";
+    }
 
 }
